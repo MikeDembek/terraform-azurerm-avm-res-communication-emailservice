@@ -22,6 +22,12 @@ variable "resource_group_name" {
   nullable    = false
 }
 
+variable "resource_group_id" {
+  type        = string
+  description = "(Required) The resource group where the resources will be deployed. Changing this forces a new resource to be created."
+  nullable    = false
+}
+
 variable "email_communication_service_domain_sender_usernames" {
   type = map(object({
     name                                        = string
