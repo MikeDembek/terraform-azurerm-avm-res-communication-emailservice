@@ -1,8 +1,3 @@
-data "azapi_resource" "rg" {
-  name = var.resource_group_name
-  type = "Microsoft.Resources/resourceGroups@2024-11-01"
-}
-
 resource "azurerm_management_lock" "this" {
   count = var.lock != null ? 1 : 0
 
@@ -29,7 +24,7 @@ resource "azurerm_role_assignment" "this" {
 resource "azapi_resource" "email_communication_service" {
   location  = "global"
   name      = var.name
-  parent_id = data.azapi_resource.rg.id
+  parent_id = var.resource_group_id
   type      = "Microsoft.Communication/emailServices@2023-03-31"
   body = {
     properties = {
